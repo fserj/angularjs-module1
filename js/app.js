@@ -14,15 +14,22 @@ function MsgController($scope) {
   $scope.food = ""
   $scope.message = "";
   $scope.msgColor = "red";
+  $scope.borderColor = "border-red";
   $scope.checkLunch = function(){
     var msg = checkFood($scope.food);
+    if(msg == msg3){
+      $scope.msgColor = "red";
+      $scope.borderColor = "border-red";
+    }else{
+      $scope.borderColor = "border-green";
+      $scope.msgColor = "green";
+    }
     $scope.message = msg;
   }
 
   function checkFood(string){
     console.log(string);
     if(!string || string.trim().length === 0){
-      $scope.msgColor = "red";
       return msg3;
     }
     var foods= string.split(',');
@@ -34,10 +41,9 @@ function MsgController($scope) {
       }
     }
     if(count == 0){
-      $scope.msgColor = "red";
       return msg3;
     }
-    $scope.msgColor = "green";
+
     if(count > 3){
       return msg2;
     }
